@@ -339,3 +339,12 @@ http://sdkpy.zqgame.com/gameid/platid/appid/pay_notice
 
 正式服支付回调地址: sdkpy.zqgame.com
 测试服支付回调地址: sdktest.zqgame.com
+
+兆维服务器
+ssh -o ServerAliveInterval=60 webadmin@10.68.237.63 (正式服务端port3001) 
+账户: zqgame      密码: zqgame.c0m@)!#sLlo0
+
+ssh -o ServerAliveInterval=60 webadmin@10.68.237.66 (正式服务端port3001) 
+账户: zqgame      密码: zqgame.c0m@)!#sLlo0
+zqgame.c0m@)!#sLlo0
+
