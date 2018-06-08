@@ -19,6 +19,8 @@ appid:游戏id
 
 SELECT * FROM distribution_infos WHERE  app_id=3002 AND distributor_id=23294 order by id limit 1
 
+SELECT * FROM distribution_infos WHERE  app_id=102334228 AND distributor_id=298
+
 9008
 
 select * from apps where name like "%捕鱼";

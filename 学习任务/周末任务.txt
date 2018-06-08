@@ -1,0 +1,4 @@
+1.搞清楚uni_talking_sdk流程代码运行过程
+2.搞清楚日志,数据库的配置
+3.搞清楚uni_talking_sdk协议的内容
+4.学会xpath, beautifulsoup, secleium,并写两个爬虫
