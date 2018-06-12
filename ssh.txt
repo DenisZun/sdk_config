@@ -54,9 +54,11 @@ http://h5.publish.gamelaoyou.com/HaoCai/html5/haocaibuyu/?account=1024009155&fm=
 
 报错的原因是什么，哪里报错，理清代码流程，不熟练
 
+发货地址就是支付回调地址
+渠道id是由我来定义的,我说是什么就是什么
+http://sdkpy.zqgame.com/gameid/distributor_id/dist_app_id/pay_notice
+
 http://sdkpy.zqgame.com/3002/231/100089/paynotice
-
-
 
 tail -f default/*.log common/*.log wechat/*.log 
 
@@ -349,4 +351,51 @@ ssh -o ServerAliveInterval=60 webadmin@10.68.237.63 (正式服务端port3001)
 ssh -o ServerAliveInterval=60 webadmin@10.68.237.66 (正式服务端port3001) 
 账户: zqgame      密码: zqgame.c0m@)!#sLlo0
 zqgame.c0m@)!#sLlo0
+
+
+
+*************************** 5. row ***************************
+              id: 102334269
+         user_id: 2
+             key: f3680bdcd357118846b00e25c7333d4b
+            name: 武当张三丰
+  pay_notice_url: http://uni.notice.zqgame.com
+      os_type_id: 1
+     app_type_id: 1
+language_type_id: 1
+          active: 1
+        approved: 1
+         summary: 
+     description: 武当剑BT
+     simple_name: 223
+        group_id: 1
+      created_at: 2018-06-08 17:50:07
+      updated_at: 2018-06-08 17:50:07
+       login_url: 
+            send: 0
+
+
+
+mysql> select * from distribution_infos where app_id=102334269 \G;
+*************************** 1. row ***************************
+                  id: 440
+              app_id: 102334269
+      distributor_id: 306
+         dist_app_id: 279
+        dist_app_key: eab0979a8f5336e9d80897d9c8310f92
+     dist_app_secret: 0d829875482476d172a51d09e6bf3d67
+     dist_app_vendor: 
+ dist_app_public_key: 
+                meta: NULL
+          created_at: 2018-06-08 17:53:01
+          updated_at: 2018-06-08 17:53:01
+dist_app_private_key: 
+              status: 0
+      dist_app_goods: 
+             replace: 0
+                send: 0
+         sandbox_off: 0
+1 row in set (0.00 sec)
+
+
 
