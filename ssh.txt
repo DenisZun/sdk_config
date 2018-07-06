@@ -1,11 +1,22 @@
 正式服:
-ssh -o ServerAliveInterval=60 zqgame@58.68.251.23 (测试服务端port3000) 
+ssh -o ServerAliveInterval=60 zqgame@58.68.251.23
+ (测试服务端port3000) 
 账号zqgame           密码: Zqgame.c0m_2013
 
 
 测试服:
 ssh -o ServerAliveInterval=60 zqgame@114.119.11.106 (正式服务端port3001) 
 账户: zqgame      密码: Zqgame.c0m_2013
+
+huazun.shan@zqgame.com
+
+
+海外服务区:
+ssh -o ServerAliveInterval=60 root@47.91.212.85
+账户: root      密码: 7WQaxJzm882tnYZ5
+
+三表联合查询:
+select a.name, a.id from (apps as a join distribution_infos as i on a.id=i.app_id) join distributors as d on i.distributor_id=d.id where d.name like “%威富通”;
 
 
 正式服服数据库管理:
@@ -26,12 +37,32 @@ SELECT * FROM distribution_infos WHERE  app_id=102334228 AND distributor_id=298
 select * from apps where name like "%捕鱼";
 | 9055 |       2 | 92c2b3d6a6e04572e13ac1101f1b7d08 | 好彩捕鱼 
 
-查看选中日志：zqgame@kickseed:/data/projects/h5_sdk/logs$ find .-name ".*.log*" -mtime -l | xargs grep "" -H -n -color
+查看选中日志：zqgame@kickseed:/data/projects/h5_sdk/logs$ 
+find .-name ".*.log*" -mtime -1 | xargs grep "" -H -n -color
+
+94e953e0bd8be07447ae3826016a7062
+79deeee889e62961bc25097b4acde9a1
 
 
-find .-name ".*.log*" -mtime -l | xargs grep "AAA01000171152810197900097" -H -n -color
+insert into distribution_infos ()
 
-find . -name "*.log*" -mtime -1 |xargs grep 'AAA01000058152810532100100' -H -n --color
+隆达游戏:
+登陆:中青宝, 验证签名方法:calc_sign2 get_app_key   :APPKEY       fyQyBh0BreEKYIDNwTW9SfGWr7H2dVRn
+
+支付:贝付宝, 验证签名方法:calc_sign  get_app_secret:APPSECRET    79deeee889e62961bc25097b4acde9a1
+
+
+5663b38b7f264
+f923b77add614d02b881ecd18ff4bad0
+
+
+
+find . -name ".*.log*" -mtime -1 | xargs grep "18070415441112780205009219851" -H -n --color
+
+find . -name "*.log*" -mtime -1 |xargs grep '18070415441112780205009219851' -H -n --color
+
+
+find . -name "*.log*" -mtime -1 |xargs grep ’1001234’ -H -n --color
 
 查看实时日志信息： tail -f *.log
 
@@ -49,6 +80,8 @@ ssh -p 10011 zcjb001@182.140.131.15  %2IhSku!jo5kx$s8
 
 
 http://h5.publish.gamelaoyou.com/HaoCai/html5/haocaibuyu/?account=1024009155&fm=0&time=1527490524&game=HCMJ&server=s1&backurl=http%3A%2F%2Fhcmj.duowan.com&dwservId=s1&tocken=FED32626082142894B9B1BC2956A2AD3&loaditems=zizuan%7Cyyvip%7Cygwx%7Cdttq&client=0&sign=F13ACC7B8E33F5A79DB8ED86C961C1A0
+
+
 
 
 
@@ -337,9 +370,32 @@ ssh ubuntu@203.195.192.87 Zqgame.c0m_2013
 
 中青宝SDK渠道属于本公司内部的渠道,若要使用该渠道登录,需要叫SDK客户端申请登录参数appid
 
+==> default/debug@8255.log <==
+[D 180704 09:23:27 async_mysql:28] query_hash:(SELECT * FROM apps WHERE id=102334269 )
+[D 180704 09:23:27 async_mysql:28] query_hash:(SELECT * FROM distribution_infos WHERE  app_id=102334269 AND distributor_id=306 )
 
-支付回调地址拼接:
+==> default/info@8255.log <==
+[I 180704 09:23:27 handler_mixin:37] handlers:{'reward_notice': <class 'sy1851.redate_notice.RedateSend'>, 'pay_notice': <class 'sy1851.pay_notice.PayNotice'>, 'login_request': <class 'sy1851.login_request.LoginRequest'>, 'create_order': <class 'common.create_order_stub.CreateOrderStub'>, 'bind_account': <class 'common.bind_account_stub.BindAccountStub'>}
+[I 180704 09:23:27 handler_mixin:40] handler:<sy1851.login_request.LoginRequest object at 0x350c610>
+[I 180704 09:23:27 handler_mixin:66] on_find_handler: <sy1851.login_request.LoginRequest object at 0x350c610>
+[I 180704 09:23:27 sign_mixin:9] sign_str:account=SY1868684&session=18ee4395371a1877d2c854f5569c2fbdf3680bdcd357118846b00e25c7333d4b, sign:51f802f1a9028a61e6f3ba359b022c31
+
+==> default/debug@8255.log <==
+[D 180704 09:23:27 zqgate:86] {'status': 200, 'data': {'ext': '', 'session': u'18ee4395371a1877d2c854f5569c2fbd', 'account': u'SY1868684', 'accid': u'SY1868684'}}
+^[[B
+
+
+
+
+58服务器支付回调地址拼接:
 http://sdkpy.zqgame.com/gameid/platid/appid/pay_notice
+
+兆维服务器支付回调地址拼接:
+http://uni.zqgame.com/gameid/platid/pay_notice
+
+curl -vvv http://uni.zqgame.com/102334270/10000/pay_notice -d “game_order=18070415160662230205008011275&amount=600
+
+
 
 正式服支付回调地址: sdkpy.zqgame.com
 测试服支付回调地址: sdktest.zqgame.com
@@ -352,6 +408,7 @@ ssh -o ServerAliveInterval=60 webadmin@10.68.237.66 (正式服务端port3001)
 账户: zqgame      密码: zqgame.c0m@)!#sLlo0
 zqgame.c0m@)!#sLlo0
 
+中青宝登录需要申请一个登陆参数
 
 
 *************************** 5. row ***************************
@@ -398,4 +455,266 @@ dist_app_private_key:
 1 row in set (0.00 sec)
 
 
+CREATE TABLE `test_table` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `app_key` varchar(64) NOT NULL,
+  `product_id` varchar(64) NOT NULL,
+  `amount` varchar(64) NOT NULL,
+   primary key(id)
+);
 
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `app_key` varchar(64) NOT NULL,
+  `product_id` varchar(64) NOT NULL,
+  `amount` varchar(64) NOT NULL,
+  PRIMARY KEY (`id`)
+) 
+
+
+[I 180622 14:16:05 sdk_client:74] [sid-3] read_message UserLoginPlatRequestSdkPmd_C data {
+      gamezone {
+        gameid: 3000
+      }
+      myaccid: 640790
+      platid: 1289
+      plataccount: "xh_1529646009290"
+      session: "{\"account\":\"\",\"email\":null,\"extdata\":null,\"faceurl\":null,\"gameid\":3000,\"gender\":null,\"imei\":0,\"nickname\":null,\"osname\":null,\"platappid\":null,\"platid\":1289,\"sign\":\"2c7d506d24f63203baf948b2dfa96b2c\",\"timestamp\":null,\"uid\":\"xh_1529646009290\"}"
+      imei: ""
+      osname: ""
+    }
+    sessiontype: 0
+    
+[I 180622 14:16:05 sdk_client:74] [sid-3] on_request_login (3000,1289),xh_1529646009290,{"account":"","email":null,"extdata":null,"faceurl":null,"gameid":3000,"gender":null,"imei":0,"nickname":null,"osname":null,"platappid":null,"platid":1289,"sign":"2c7d506d24f63203baf948b2dfa96b2c","timestamp":null,"uid":"xh_1529646009290"}
+
+==> default/debug.log <==
+[D 180622 14:16:05 async_mysql:28] query_hash:(SELECT * FROM apps WHERE id=3000 )
+[D 180622 14:16:05 async_mysql:28] query_hash:(SELECT * FROM distribution_infos WHERE  app_id=3000 AND distributor_id=1289 order by id limit 1 )
+
+==> default/info.log <==
+[I 180622 14:16:05 sdk_client:74] [sid-3] write_message UserLoginPlatReturnSdkPmd_S data {
+      gamezone {
+        gameid: 3000
+      }
+      myaccid: 640790
+      platid: 1289
+      subplatid: 0
+      plataccount: "xh_1529646009290"
+      session: "{\"account\":\"\",\"email\":null,\"extdata\":null,\"faceurl\":null,\"gameid\":3000,\"gender\":null,\"imei\":0,\"nickname\":null,\"osname\":null,\"platappid\":null,\"platid\":1289,\"sign\":\"2c7d506d24f63203baf948b2dfa96b2c\",\"timestamp\":null,\"uid\":\"xh_1529646009290\"}"
+      extdata: "None"
+      oldplataccount: "xh_1529646009290"
+      oldplatid: 1289
+      imei: ""
+      osname: ""
+      gameprops: ""
+      gender: 0
+    }
+    ret: 1
+
+
+
+==> default/debug@8255.log <==
+[D 180622 16:38:42 async_mysql:36] insert:(INSERT `user_login_infos`(`token`,`user_id`,`created_at`,`distributor_id`,`updated_at`,`app_id`) VALUES ('d674f26cdb07fc4fe0c885f655138e6853124f1a','305004852',Now(),17,Now(),'102334241') ON DUPLICATE KEY UPDATE `token`='d674f26cdb07fc4fe0c885f655138e6853124f1a',`updated_at`=Now())
+
+==> default/info@8255.log <==
+[I 180622 16:39:37 zqgate:39] POST uri:/102334269/306/login_request?account=zqb12345678&session=2ec9070c61a726b4116d0cd7932184ae&sign=08bf7e4d588e8352d3dfba9d0b9c9492, body: 
+
+==> default/debug@8255.log <==
+[D 180622 16:39:37 async_mysql:28] query_hash:(SELECT * FROM apps WHERE id=102334269 )
+[D 180622 16:39:37 async_mysql:28] query_hash:(SELECT * FROM distribution_infos WHERE  app_id=102334269 AND distributor_id=306 )
+
+==> default/info@8255.log <==
+[I 180622 16:39:37 sign_mixin:9] sign_str:account=zqb12345678&session=2ec9070c61a726b4116d0cd7932184aef3680bdcd357118846b00e25c7333d4b, sign:08bf7e4d588e8352d3dfba9d0b9c9492
+
+==> tornado_8255.log <==
+[E 180622 16:39:37 ioloop:629] Exception in callback <functools.partial object at 0x1cd0a48>
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado-4.3-py2.7-linux-x86_64.egg/tornado/ioloop.py", line 600, in _run_callback
+        ret = callback()
+      File "/usr/local/lib/python2.7/dist-packages/tornado-4.3-py2.7-linux-x86_64.egg/tornado/stack_context.py", line 275, in null_wrapper
+        return fn(*args, **kwargs)
+      File "/data/projects/uni.notice.zqgame.com/utils/handler_mixin.py", line 39, in cb
+        on_find_handler(handler)
+      File "/data/projects/uni.notice.zqgame.com/utils/handler_mixin.py", line 72, in on_find_handler
+        if checked and self.handler.process(self, params):
+    AttributeError: 'LoginRequest' object has no attribute 'process'
+
+==> default/info@8256.log <==
+[I 180622 16:40:37 zqgate:39] POST uri:/102334269/306/login_request?account=zqb12345678&session=2ec9070c61a726b4116d0cd7932184ae&sign=08bf7e4d588e8352d3dfba9d0b9c9492, body: 
+
+==> default/debug@8256.log <==
+[D 180622 16:40:37 async_mysql:28] query_hash:(SELECT * FROM apps WHERE id=102334269 )
+[D 180622 16:40:37 async_mysql:28] query_hash:(SELECT * FROM distribution_infos WHERE  app_id=102334269 AND distributor_id=306 )
+
+==> default/info@8256.log <==
+[I 180622 16:40:37 sign_mixin:9] sign_str:account=zqb12345678&session=2ec9070c61a726b4116d0cd7932184aef3680bdcd357118846b00e25c7333d4b, sign:08bf7e4d588e8352d3dfba9d0b9c9492
+
+
+SDK服务器 —> 游戏服务器:http请求
+SDK服务器 —> SDK客户端: ws请求
+
+
+==> default/debug@8256.log <==
+[D 180625 09:54:51 async_mysql:28] query_hash:(SELECT * FROM apps WHERE id=102334269 )
+[D 180625 09:54:51 async_mysql:28] query_hash:(SELECT * FROM distribution_infos WHERE  app_id=102334269 AND distributor_id=306 )
+
+==> default/info@8256.log <==
+[I 180625 09:54:51 sign_mixin:9] sign_str:accid=zqb12345678&amount=600&ext=60元宝&game_order=2018062509545103061&goods_desc=1800元宝&goods_id=600&goods_name=1800元宝&notice_url=http://10.141.139.154:8020/Recharge_Res&role_id=1&role_name=娄博远1&server_id=330681f3680bdcd357118846b00e25c7333d4b, sign:d0ad6ec1fc439d4a672fe1efaf583e4e
+
+==> default/debug@8256.log <==
+[D 180625 09:54:51 async_mysql:36] insert:(INSERT `notify_urls`(`count`,`user_id`,`url`,`created_at`,`md5`,`updated_at`,`app_id`) VALUES (1,'2','http://10.141.139.154:8020/Recharge_Res',NOW(),'b3ed7fadeaec8f980ce5053cb2450227',NOW(),'102334269') ON DUPLICATE KEY UPDATE `count`=count + 1)
+[D 180625 09:54:51 async_mysql:36] insert:(INSERT `creating_orders`(`game_account_id`,`account`,`user_id`,`platform_id`,`pay_platid`,`created_at`,`server_id`,`role_id`,`real_price`,`ext`,`role_name`,`my_order_id`,`item_id`,`notify_url_id`,`app_id`,`ideal_price`) VALUES (0,'zqb12345678','2','306','306',NOW(),'330681','1','600','60元宝','娄博远1','2018062509545103061','600',884697,'102334269','600'))
+[D 180625 09:54:51 zqgate:98] {'status': 200, 'data': {'accid': u'zqb12345678', 'server_id': u'330681', 'notice_url': 'http://uni.notice.zqgame.com/102334269/306/pay_notice', 'goods_name': u'1800\u5143\u5b9d', 'goods_id': u'600', 'game_order': u'2018062509545103061', 'goods_desc': u'1800\u5143\u5b9d', 'ext': u'60\u5143\u5b9d', 'role_id': u'1', 'amount': u'600', 'role_name': u'\u5a04\u535a\u8fdc1', 'create_time': '20180625095451', 'sign': '', 'plat_order': ''}}
+
+==> default/info@8255.log <==
+[I 180625 09:55:51 zqgate:39] POST uri:/102334269/306/login_request?account=SY1760765&session=3733bbe9e2159fb6b3e20ed4e89be877&sign=7a0de6561baff929e108a436208befc2, body: 
+
+==> default/debug@8255.log <==
+[D 180625 09:55:51 async_mysql:28] query_hash:(SELECT * FROM apps WHERE id=102334269 )
+[D 180625 09:55:51 async_mysql:28] query_hash:(SELECT * FROM distribution_infos WHERE  app_id=102334269 AND distributor_id=306 )
+
+==> default/info@8255.log <==
+[I 180625 09:55:51 sign_mixin:9] sign_str:account=SY1760765&session=3733bbe9e2159fb6b3e20ed4e89be877f3680bdcd357118846b00e25c7333d4b, sign:7a0de6561baff929e108a436208befc2
+
+
+[I 180625 09:53:25 login_request:34] sign_str:userID=zqb12345678&token=97763e8cb8b556a47b3c7c18ff2a0671&key=0d829875482476d172a51d09e6bf3d67, sign:e2608a869e8240585f69968d96052b5a
+
+[I 180625 09:53:25 login_request:37] params:{'token': u'97763e8cb8b556a47b3c7c18ff2a0671', 'userID': u'zqb12345678', 'sign': 'e2608a869e8240585f69968d96052b5a'}
+
+[I 180625 09:53:26 login_request:48] ret:{u'state': 1, u'data': {u'username': u'1528439345026.185sy', u'channelID': 2691, u'userID': u'zqb12345678'}}
+
+[I 180625 09:53:26 login_request:53] verify_session: (({'ext': '', 'session': u'97763e8cb8b556a47b3c7c18ff2a0671', 'account': u'zqb12345678', 'accid': u'zqb12345678'}), ({u'state': 1, u'data': {u'username': u'1528439345026.185sy', u'channelID': 2691, u'userID': u'zqb12345678'}})) succeed
+
+[I 180625 09:53:26 login_mixin:18] bind account success:({'platform_id': '306', 'account': 'zqb12345678', 'remark': '0'})({u'status': 200, u'thirdaccountname': u'zqb12345678', u'remark': {}, u'accountid': 305222800, u'accountname': u'3918239@zqb.com'})
+
+
+[“%s=%s” % (key, params.get(key, “”)) for key in keys]
+
+
+由于日志只保存半个月,要经常备份,所以日志目录中会有 log.1 ~ log.n诸如此类
+
+
+
+25417648720319564
+
+
+[I 180702 13:26:29 create_order:61] after_create_myorder_params:{'pay_type': 'wx_wap', 'client_ip': '58.68.251.23', 'customer_id': '5663b38b7f264', 'user_id': 23140524L, 'name': u'250\u4e2a\u94bb\u77f3', 'order_id': u'AAA23140524153050918900155', 'nonce_str': 'eHKf5HandGwoTvI', 'sign': '4b3685d027756d81c1e02b46c5f31f1a', 'notify_url': 'http://sdkpy.zqgame.com/9057/310/5663b38b7f264/pay_notice', 'total_fee': 3000, 'callback_url': u'nil'}
+[I 180702 13:26:29 create_order:34] jyyhpay_on_create_order_body:{"code":104,"error":"通道异常,请联系业务配置通道","url":null}
+
+==> common/error.log <==
+[E 180702 13:26:29 create_order:42] on_create_order failed: AAA23140524153050918900155, None, {"code":104,"error":"通道异常,请联系业务配置通道","url":null}
+
+==> default/info.log <==
+[I 180702 13:26:29 sdk_client:74] [sid-1] on_order_created: (9057, 68, od5FywBvqkIUAfgofJcgXySmxptU, AAA23140524153050918900155, 1, )
+[I 180702 13:26:29 sdk_client:74] [sid-1] on_order_created message:data {
+      gamezone {
+        gameid: 9057
+        zoneid: 165
+      }
+      myaccid: 23140524
+      platid: 68
+      plataccount: "od5FywBvqkIUAfgofJcgXySmxptU"
+      session: ""
+      platappid: ""
+    }
+    gameorder: "AAA23140524153050918900155"
+    roleid: 23140524
+    originalmoney: 3000.0
+    ordermoney: 3000.0
+    goodid: 340
+    goodnum: 1
+    result: 1
+    noticeurl: ""
+    platorder: ""
+    redirecturl: "nil"
+    payplatid: 310
+    appgoodid: "340"
+    createtime: "20180702132629"
+    
+[I 180702 13:26:29 sdk_client:74] [sid-1] write_message CreatePlatOrderReturnSdkPmd_S data {
+      gamezone {
+        gameid: 9057
+        zoneid: 165
+      }
+      myaccid: 23140524
+      platid: 68
+      plataccount: "od5FywBvqkIUAfgofJcgXySmxptU"
+      session: ""
+      platappid: ""
+    }
+    gameorder: "AAA23140524153050918900155"
+    roleid: 23140524
+    originalmoney: 3000.0
+    ordermoney: 3000.0
+    goodid: 340
+    goodnum: 1
+    result: 1
+    noticeurl: ""
+    platorder: ""
+    redirecturl: "nil"
+    payplatid: 310
+    appgoodid: "340"
+    createtime: "20180702132629"
+
+
+
+find . -name "*.log*" -mtime -1 |xargs grep '25559879246694867' -H -n --color
+
+
+
+
+
+
+{
+  id:20191,
+  name:'小七联运(IOS)',
+  abbrev:'xqlyios',
+  verify_session_url:'',
+  verify_order_url:'',
+},
+
+
+
+
+{
+  id:21191,
+  name:'小七联运(安卓)',
+  abbrev:'xqlyaz',
+  verify_session_url:'',
+  verify_order_url:'',
+},
+
+
+{
+  id:211,
+  name:'支付宝手机网站',
+  abbrev:'zfbsjwz',
+  verify_session_url:'',
+  verify_order_url:'',
+},
+
+
+
+
+
+root@iZj6c5tqjy99fb7s9nrge9Z:/data/project/h5sdk_01# python zqgate.py 
+Traceback (most recent call last):
+  File "zqgate.py", line 80, in <module>
+    main()
+  File "zqgate.py", line 77, in main
+    start()
+  File "zqgate.py", line 42, in start
+    sdk.start()
+  File "/data/project/h5sdk_01/sdk_manager.py", line 72, in start
+    self._mysql = AsyncMysql(settings.database_configs[options.mode])
+  File "/data/project/h5sdk_01/utils/async_mysql.py", line 22, in __init__
+    super(AsyncMysql,self).__init__(**kwargs)
+  File "/data/project/h5sdk_01/utils/async_mixin.py", line 29, in __init__
+    t = thread_klass(**thread_klass_args)
+  File "/data/project/h5sdk_01/utils/async_mysql.py", line 6, in __init__
+    self._mysql = Mysql(kwargs['db_config'])
+  File "/data/project/h5sdk_01/utils/mysql.py", line 13, in __init__
+    self.connect()
+  File "/data/project/h5sdk_01/utils/mysql.py", line 16, in connect
+    self._client = _mysql.connect(**self._connect_args)
+_mysql_exceptions.OperationalError: (2003, "Can't connect to MySQL server on '10.119.4.112' (110)")

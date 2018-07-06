@@ -1,0 +1,82 @@
+python 包管理器
+1.sudo apt-get install python-setuptools  --easy_install
+2.sudo easy_install pip
+
+sudo pip install package_name(包名)  （第二步安装失败时一个个安装）
+
+apt-xapian-index (0.45)
+argparse (1.2.1)
+backports-abc (0.4)
+backports.ssl-match-hostname (3.5.0.1)
+certifi (2016.9.26)
+chardet (2.0.1)
+colorama (0.2.5)
+docutils (0.12)
+futures (3.0.5)
+GnuPGInterface (0.3.2)
+html5lib (0.999)
+lockfile (0.12.2)
+M2Crypto (0.21.1)
+meld3 (0.6.10)
+MySQL-python (1.2.5)
+netifaces (0.10.5)
+pexpect (4.2.1)
+pip (1.5.4)
+protobuf (2.6.1)
+ptyprocess (0.5.2)
+pycares (2.1.1)
+pycrypto (2.6.1)
+pycurl (7.43.0)
+pyflakes (1.3.0)
+pygobject (3.12.0)
+python-apt (0.9.3.5ubuntu2)
+python-daemon (2.0.5)
+python-debian (0.1.21-nmu2ubuntu2)
+requests (2.2.1)
+setuptools (3.3)
+singledispatch (3.4.0.3)
+six (1.5.2)
+ssh-import-id (3.21)
+suds (0.4)
+supervisor (3.0b2)
+tornado (4.4.2)
+urllib3 (1.7.1)
+wheel (0.24.0)
+wsgiref (0.1.2)
+
+
+
+
+1、登入服务器，下载代码  (cd/data/project  git cline h5sdk代码路径)
+2、安装python相关软件 （1.sudo apt-get install python-setuptools 2、sudo easy_install pip）
+3. sh ./install_pkgs.sh
+4、再安装protobuf 2.6.1 (要先下载gtest和protobuf 2.6.1解压到project目录下)
+5、更改服务器配置（服务器监听端口和ip， 登录服务器地址和端口，数据库账户密码和IP， 支付回调域名）   settings.py文件  要参照正式服的配置
+
+6、编译proto文件: cd platcommon ;    protoc -I=./ --python_out=../h5sdk/proto ./sdkcommand.proto
+7、先运行python zqgate.py能不能启动，缺少什么文件就安装那个模块 先安装大的上级的
+8、修改run.sh， python `pwd`/zqgate.py --logging=debug --mode=production --port=18090 --daemon
+9、./run.sh start
+
+
+
+
+4.安装protocol
+sudo apt-get install autoconf automake libtool
+运行 ./autogen.sh
+./configure
+make     (或sudo make)
+make install
+cd python
+python setup.py build       sudo python setup.py build    (root权限安装python)
+python setup.py install     sudo python setup.py install
+#导出protocol的动态库路径
+/data/project/platcommon: export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/libpts  
+
+
+
+
+
+
+
+
