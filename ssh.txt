@@ -1,7 +1,7 @@
 正式服:
 ssh -o ServerAliveInterval=60 zqgame@58.68.251.23
  (测试服务端port3000) 
-账号zqgame           密码: Zqgame.c0m_2013
+账号zqgame           密码:  asdtfvv#$%Tf7843
 
 
 测试服:
@@ -9,6 +9,32 @@ ssh -o ServerAliveInterval=60 zqgame@114.119.11.106 (正式服务端port3001)
 账户: zqgame      密码: Zqgame.c0m_2013
 
 huazun.shan@zqgame.com
+
+
+渠道号10000+表示有渠道已被映射,为了使各表中的数据合并,distributor表中的简称abbrev为当前渠道id
+
+http://sdkpy.zqgame.com/3004/317/6130/pay_notice
+
+                <!--mysql encode="no">mysql://root:mypass@tcp(127.0.0.1:3306)/platserver_account</mysql-->
+                <mysql_zone encode="no">mysql://root:zq_zjs_zqb@tcp(172.31.144.224:3306)/platserver_zone</mysql_zone>
+                <mysql encode="no">mysql://root:zq_zjs_zqb@tcp(172.31.144.224:3306)/platserver_account</mysql>
+                <ifname>eth4</ifname>
+                <serverList>serverList.xml</serverList>
+                <debug>false</debug>
+                <log_server>debug</log_server>
+                <sm_passinfo>1:001</sm_passinfo>
+                <sm_gameid>0019009</sm_gameid>
+                <sm_channel>0019009</sm_channel>
+                <sm_sendtype>1,2</sm_sendtype>
+                <sm_apikey>fY6AsCL0SVK8b2KBowHlD7eTnKMXmrim</sm_apikey>
+                <sm_secretkey>dEKX3TGgGKolb6b3IMbco7RiOh8anCr7</sm_secretkey>
+                <sm_url>http://sms.api.zqgame.com/sendMessage/</sm_url>
+                <phone_list>18718560862,18825157088</phone_list>
+                <pprof_debug>true</pprof_debug>
+                <sm_remark>0</sm_remark>
+
+
+SELECT * FROM distribution_infos WHERE  app_id=3000 AND distributor_id=309 order by id limit 1; 
 
 
 海外服务区:
@@ -38,13 +64,35 @@ select * from apps where name like "%捕鱼";
 | 9055 |       2 | 92c2b3d6a6e04572e13ac1101f1b7d08 | 好彩捕鱼 
 
 查看选中日志：zqgame@kickseed:/data/projects/h5_sdk/logs$ 
-find .-name ".*.log*" -mtime -1 | xargs grep "" -H -n -color
+find .-name ".*.log*" -mtime -1 | xargs grep "" -H -n —-color
 
 94e953e0bd8be07447ae3826016a7062
 79deeee889e62961bc25097b4acde9a1
 
 
 insert into distribution_infos ()
+
+
+insert into distributors 
+    (name, abbrev, created_at, updated_at) 
+    values ("贝付宝(IOS)", "bfb", NOW(), NOW());
+
+insert into distribution_infos 
+    (app_id, distributor_id, dist_app_id, dist_app_key, meta, created_at, updated_at) 
+    values (102334271, 294, "60100105", "79deeee889e62961bc25097b4acde9a1", "[]", NOW(), NOW());
+
+个人考勤查询:24074
+密码:24074123456
+
+
+我捋了下流程，正确有效的流程应该是这样：
+游戏客户端点击商品--游戏服响应去sdk服下单---sdk保存订单信息并修改成回调地址返回游戏服---游戏服收到数据返回给游戏客户端--游戏客户端收到数据传到我们客户端sdk接口--我们sdk去调用贝付宝支付选择接口（官方或第三方）--收到具体方式后调用贝付宝客户端下单接口调起支付界面
+
+
+
+
+find . -name "*.log*" -mtime -1 |xargs grep ‘2018072716193630301231532679576’ -H -n --color
+
 
 隆达游戏:
 登陆:中青宝, 验证签名方法:calc_sign2 get_app_key   :APPKEY       fyQyBh0BreEKYIDNwTW9SfGWr7H2dVRn
@@ -55,11 +103,75 @@ insert into distribution_infos ()
 5663b38b7f264
 f923b77add614d02b881ecd18ff4bad0
 
+13816750551
+
+ select * from creating_orders where game_account_id = 21510308;
+find . -name "*.log*" -mtime -1 | xargs grep '2018012916330116862371517214781' -H -n --color
+
+find . -name ".*.log*" -mtime -1 | xargs grep "1531884973637270002" -H -n --color
+
+find . -name "*.log*" -mtime -1 | xargs grep '25417648720320298' -H -n --color
 
 
-find . -name ".*.log*" -mtime -1 | xargs grep "18070415441112780205009219851" -H -n --color
+==> default/debug.log <==
+[D 180711 14:39:26 async_mysql:36] insert:(INSERT `creating_orders`(`game_account_id`,`user_id`,`notify_url_id`,`pay_platid`,`created_at`,`server_id`,`role_id`,`platform_id`,`ext`,`role_name`,`my_order_id`,`item_id`,`real_price`,`app_id`,`ideal_price`) VALUES (21510308,'2',1,312,NOW(),1,21510308,68,'od5FywKNi7x82meVmQWH7YPLt1t0','王测试','25417648720320329',58,1.0,'9057',1.0))
+[D 180711 14:39:26 async_mysql:36] insert:(INSERT `creating_orders`(`game_account_id`,`user_id`,`notify_url_id`,`pay_platid`,`created_at`,`server_id`,`role_id`,`platform_id`,`ext`,`role_name`,`my_order_id`,`item_id`,`real_price`,`app_id`,`ideal_price`) VALUES (21510308,'2',1,312,NOW(),1,21510308,68,'od5FywKNi7x82meVmQWH7YPLt1t0','王测试','25417648720320329',58,1.0,'9057',1.0))
 
-find . -name "*.log*" -mtime -1 |xargs grep '18070415441112780205009219851' -H -n --color
+==> common/info.log <==
+[I 180711 14:39:26 create_order:97] on_create_myorder_zfbsjwz:data {
+      gamezone {
+        gameid: 9057
+        zoneid: 1
+      }
+      myaccid: 21510308
+      platid: 68
+      plataccount: "od5FywKNi7x82meVmQWH7YPLt1t0"
+      session: ""
+    }
+    gameorder: "25417648720320329"
+    roleid: 21510308
+    rolename: "\347\216\213\346\265\213\350\257\225"
+    originalmoney: 1.0
+    ordermoney: 1.0
+    goodid: 58
+    goodnum: 1
+    goodname: "\346\270\270\346\210\217\351\222\273\347\237\263"
+    gooddesc: "\346\270\270\346\210\217\351\222\273\347\237\263"
+    redirecturl: "http://custom.gamelaoyou.com/chessAgents/niushisanqipaiMahjong/getJewel.html?0.4824741232397354"
+    payplatid: 312
+    extdata: ""
+    appgoodid: "58"
+     ex:None
+[I 180711 14:39:26 create_order:34] after_create_myorder packet:data {
+      gamezone {
+        gameid: 9057
+        zoneid: 1
+      }
+      myaccid: 21510308
+      platid: 68
+      plataccount: "od5FywKNi7x82meVmQWH7YPLt1t0"
+      session: ""
+    }
+    gameorder: "25417648720320329"
+    roleid: 21510308
+    rolename: "\347\216\213\346\265\213\350\257\225"
+    originalmoney: 1.0
+    ordermoney: 1.0
+    goodid: 58
+    goodnum: 1
+    goodname: "\346\270\270\346\210\217\351\222\273\347\237\263"
+    gooddesc: "\346\270\270\346\210\217\351\222\273\347\237\263"
+    redirecturl: "http://custom.gamelaoyou.com/chessAgents/niushisanqipaiMahjong/getJewel.html?0.4824741232397354"
+    payplatid: 312
+    extdata: ""
+    appgoodid: "58"
+    
+[I 180711 14:39:26 app_mixin:67] zfbsjwz_sign_str: app_id=2017121200617028&biz_content={'body': '\xe6\xb8\xb8\xe6\x88\x8f\xe9\x92\xbb\xe7\x9f\xb3', 'out_trade_no': '25417648720320329', 'product_code': 'QUICK_WAP_WAY', 'total_amount': '0.01', 'subject': '\xe6\xb8\xb8\xe6\x88\x8f\xe9\x92\xbb\xe7\x9f\xb3'}&charset=utf-8&method=alipay.trade.wap.pay&notify_url=http://sdkpy.zqgame.com/9057/312/2017121200617028/pay_notice&sign_type=RSA2&timestamp=2018-07-11 14:39:26&version=1.0
+[I 180711 14:39:26 app_mixin:73] zfbsjwz_sign: pWI8fsz7jzQU6K/6km/kMrZlBVFwqtoki7V00wXDv580pYl/yLTiOdDC1tKoVT1pd1/MbwiDBCYZmmEEzQNY9UjtQGL0L9Mk73X7GXYiTMF47hULl0VdhS3NxdPvIoBopvdx4Wvrw02AyceAzMpN8k9wpJImcKN8Yvo0DOwU8mZyv4hnSPyYTWyq3T4tpOixlpLmW0+sN9IJhpy47lQseo+TNtawEvzbzGUKAdiGuXa5+nMONMtzBMHAiw53gUCYd5y9/h3tEXvu3Pft8hit5LQEHR8fhWt9htpKnqx0XuhJOc23TVogaMxHBFmMCKoZk6IlMFkmuMEtQ2lThmxkLQ==
+
+
+
+
 
 
 find . -name "*.log*" -mtime -1 |xargs grep ’1001234’ -H -n --color
@@ -91,7 +203,11 @@ http://h5.publish.gamelaoyou.com/HaoCai/html5/haocaibuyu/?account=1024009155&fm=
 渠道id是由我来定义的,我说是什么就是什么
 http://sdkpy.zqgame.com/gameid/distributor_id/dist_app_id/pay_notice
 
-http://sdkpy.zqgame.com/3002/231/100089/paynotice
+
+客家: http://sdkpy.zqgame.com/3004/16299/101060/pay_notice
+漳州: http://sdkpy.zqgame.com/9051/312/2017112000049936/pay_notice
+
+http://hwsdk.zqgame.com/3000/309/pay_notice
 
 tail -f default/*.log common/*.log wechat/*.log 
 
@@ -105,9 +221,20 @@ limit 1;
 接哪个游戏要清楚!!!!!!!
 
 
+curl http://uni.notice.zqgame.com/102334271/294/pay_notice?wxno=2018072721001004990590741892&app_id=12612&orderno=2018072716193630301231532679576&fee=1&sign=636d9e24766bf6e8ae33f9b1f9abc810&attach=13&child_para_id=1
 
 
 
+
+http://sdkpy.zqgame.com/9032/269/2018051160142346/pay_notice gmt_create=2018-07-11+14%3A40%3A16&charset=GBK&seller_email=929276895%40qq.com&subject=%3F%3F%3F%3F%3F%3F%A8%A6%3F%3F%3F%3F%3F&sign=EJL6yTdXAGWaJ1utCiMRWnTsGqlKE%2B40m2Ljq7EzpnmuBrLeDPECFlTjdKKxCsggPJQfmXtqKb8LVPshHYbp%2FZQkEYNRGSQnGAOn%2BXJKU57jaBUZ1pbE%2BKQpxYXBwamPbZu1%2Fbvs4mNbu3nB0uG5evesTGzhhM%2FPJf%2Flet9ufh9rD76WdqQQnsYtgLt3jGAHIka26rmeRPHsnCgTCXUTaJirFROY%2FbfnqR6WDYmp42aUT%2Fh2HtPjWDK9nvHv2k%2BCw52JBn1WIp2Qz4cLMH5Di39582b9Wif%2FgfVUnKy72VSP8a9NNJrTmaiqrVpW0iEkGRk0nLeyLadNVnVMd7rjjQ%3D%3D&body=%3F%3F%3F%3F%3F%3F%A8%A6%3F%3F%3F%3F%3F&buyer_id=2088702613221783&invoice_amount=0.01&notify_id=e6e226ec8be61ff84fbeac14be940aam0t&fund_bill_list=%5B%7B%22amount%22%3A%220.01%22%2C%22fundChannel%22%3A%22ALIPAYACCOUNT%22%7D%5D&notify_type=trade_status_sync&trade_status=TRADE_SUCCESS&receipt_amount=0.01&buyer_pay_amount=0.01&app_id=2017121200617028&sign_type=RSA2&seller_id=2088421830816203&gmt_payment=2018-07-11+14%3A40%3A16&notify_time=2018-07-11+14%3A40%3A17&version=1.0&out_trade_no=25417648720320329&total_amount=0.01&trade_no=2018071121001004780597066399&auth_app_id=2017121200617028&buyer_logon_id=645***%40qq.com&point_amount=0.00, platappid:2017121200617028, platform:312, handler_name:pay_notice
+
+ curl -vvv http://sdkpy.zqgame.com/9032/269/2018051160142346/pay_notice -d 'gmt_create=2018-07-11+14%3A40%3A16&charset=GBK&seller_email=929276895%40qq.com&subject=%3F%3F%3F%3F%3F%3F%A8%A6%3F%gn=EJL6yTdXAGWaJ1utCiMRWnTsGqlKE%2B40m2Ljq7EzpnmuBrLeDPECFlTjdKKxCsggPJQfmXtqKb8LVPshHYbp%2FZQkEYNRGSQnGAOn%2BXJKU57jaBUZ1pbE%2BKQpxYXBwamPbZu1%2Fbvs4mNbu3nB0uG5evesTGzhhM%2FPJf%2Flet9ufh9rD76WdqQQnsYtgLt3jGAHIka26rmeRPHsnCgTCXUTaJirFROY%2FbfnqR6WDYmp42aUT%2Fh2HtPjWDK9nvHv2k%2BCw52JBn1WIp2Qz4cLMH5Di39582b9Wif%2FgfVUnKy72VSP8a9NNJrTmaiqrVpW0iEkGRk0nLeyLadNVnVMd7rjjQ%3D%3D&body=%3F%3F%3F%3F%3F%3F%A8%A6%3F%3F%3F%3F%3F&buyer_id=2088702613221783&invoice_amount=0.01&notify_id=e6e226ec8be61ff84fbeac14be940aam0t&fund_bill_list=%5B%7B%22amount%22%3A%220.01%22%2C%22fundChannel%22%3A%22ALIPAYACCOUNT%22%7D%5D&notify_type=trade_status_sync&trade_status=TRADE_SUCCESS&receipt_amount=0.01&buyer_pay_amount=0.01&app_id=2017121200617028&sign_type=RSA2&seller_id=2088421830816203&gmt_payment=2018-07-11+14%3A40%3A16&notify_time=2018-07-11+14%3A40%3A17&version=1.0&out_trade_no=25417648720320329&total_amount=0.01&trade_no=2018071121001004780597066399&auth_app_id=2017121200617028&buyer_logon_id=645***%40qq.com&point_amount=0.00, platappid:2017121200617028, platform:312, handler_name:pay_notice'
+
+10, 172, 192都有可能是内网,需要查询ip
+支付回调前先ping通域名端口
+
+
+20247
 
 ==> default/info.log <==
 [I 180529 17:12:28 sdk_client:74] [sid-1] read_message UserLoginPlatRequestSdkPmd_C data {
@@ -359,6 +486,13 @@ http://127.0.0.1:5700/MahjongLobby-zhaocaijinbao-webpay/Egret/?debug=true&cacheT
 
 curl -vvv 'http://pay.payshelp.com/:qr_amount=6.0&uid=&order_uid=1000000&type=1&notify_url=http%3A%2F%2Fpayment.zcjbdw.com%2F8001%2F304%2Fpay_notice&key=E201AC639F42290E133A8E9AB9FCC363&order_number=8001AAA01000000152784693600008&return_url=http%3A%2F%2F127.0.0.1%3A5700%2FMahjongLobby-zhaocaijinbao-webpay%2FEgret%2F%3Fdebug%3Dtrue%26cacheToken%3Dfalse%26uid%3Dg1%26v%3'
 
+http://uni.zqgame.com/102334271/294/create_order
+
+易水寒天空互娱龙游乐嗨嗨 16299
+
+http://sdkpy.zqgame.com/3004/16299/333/create_order
+
+
 
 来吧斗牌服务器
 203.195.192.87     ubuntu    Zqgame.c0m_2013
@@ -388,21 +522,31 @@ ssh ubuntu@203.195.192.87 Zqgame.c0m_2013
 
 
 58服务器支付回调地址拼接:
-http://sdkpy.zqgame.com/gameid/platid/appid/pay_notice
+http://sdkpy.zqgame.com/9057/312/2017121200617028/pay_notice
 
 兆维服务器支付回调地址拼接:
 http://uni.zqgame.com/gameid/platid/pay_notice
 
 curl -vvv http://uni.zqgame.com/102334270/10000/pay_notice -d “game_order=18070415160662230205008011275&amount=600
-
+/Users/akumotor/Desktop/local_code/talkingsdk_server/six7/pay_notice.py
 
 
 正式服支付回调地址: sdkpy.zqgame.com
 测试服支付回调地址: sdktest.zqgame.com
 
+post请求一定要urlencode编码
+
+支付回调请求不到账的问题要先提供订单号,订单号 —-> 数据库查询订单信息 —-> find方法查看日志 —-> 发现报错原因(如:签名失败, 下单失败, 支付回调地址无法解析等)
+
+如遇到返利,支付回调诸如此类的问题请求发不过来了,无法进入渠道的情况,一般来说有两种可能性:
+1.参数解析问题,参数字段不完整,或有所遗漏,参数字段未包含签名等问题,导致签名无法计算从而进入不了渠道
+2.签名规则错误,在出这类问题的时候,先查看本地代码,密切注意签名规则,与文档上规定的进行比对(这次185的返利渠道由于历史遗留问题,对签名规则修改后不提交,下拉代码覆盖,导致签名规则还是没改之前的...)
+3.handler_mixin中的on_find_handler方法
+
+
 兆维服务器
 ssh -o ServerAliveInterval=60 webadmin@10.68.237.63 (正式服务端port3001) 
-账户: zqgame      密码: zqgame.c0m@)!#sLlo0
+账户: webadmin      密码: zqgame.c0m@)!#sLlo0
 
 ssh -o ServerAliveInterval=60 webadmin@10.68.237.66 (正式服务端port3001) 
 账户: zqgame      密码: zqgame.c0m@)!#sLlo0
@@ -658,7 +802,7 @@ SDK服务器 —> SDK客户端: ws请求
 
 
 
-find . -name "*.log*" -mtime -1 |xargs grep '25559879246694867' -H -n --color
+find . -name "*.log*" -mtime -1 |xargs grep ‘9057’ -H -n --color
 
 
 
@@ -718,3 +862,209 @@ Traceback (most recent call last):
   File "/data/project/h5sdk_01/utils/mysql.py", line 16, in connect
     self._client = _mysql.connect(**self._connect_args)
 _mysql_exceptions.OperationalError: (2003, "Can't connect to MySQL server on '10.119.4.112' (110)")
+
+
+
+
+
+
+QEgr/GWQ2/6hamsVTylhs0zSxxry17UstkG/iQqQNPnJG4d5/FlGEgeECcNNIqDiLnHUy8eTwtFTyFQPns85J53IUv9XBqjkW5npFVC2/6ZMayd+TWVGSym2fkZQI3JB3PlZBqFTgE3XtueKn1hJLwvFjACEUQqic8EUR0xb0k2zJm0l5rl4xfZfoZPr4NZJCx9zgBDnm22hFmoKyeryj3cEJ
+
+
+QEgr/GWQ2/6hamsVTylhs0zSxxry17UstkG/iQqQNPnJG4d5/FlGEgeECcNNIqDiLnHUy8eTwtFTyFQPns85J53IUv9XBqjkW5npFVC2/6ZMayd+TWVGSym2fkZQI3JB3PlZBqFTgE3XtueKn1hJLwvFjACEUQqic8EUR0xb0k2zJm0l5rl4xfZfoZPr4NZJCx9zgBDnm22hFmoKyeryj3cEJTBszwLkMJmNna60p86SGZEsydnHlBg9iVVZJ86Id/OWAw8TyWo9PLWytk0q6Tx3hMisXrZI2QFukAXpyfH9GIJvAcJ/0j6f2wr/qaIVKQyegyK9caZQqXdNiDpPlQ==
+
+
+
+
+
+curl -vvv -d ‘https://openapi.alipay.com/gateway.do:timestamp=2018-07-11+10%3A47%3A48&charset=utf-8&app_id=2017121200617028&biz_content=%7B%27body%27%3A+%27%5Cxe6%5Cxb8%5Cxb8%5Cxe6%5Cx88%5Cx8f%5Cxe9%5Cx92%5Cxbb%5Cxe7%5Cx9f%5Cxb3%27%2C+%27out_trade_no%27%3A+%2725417648720320287%27%2C+%27product_code%27%3A+%27QU    ICK_WAP_WAY%27%2C+%27total_amount%27%3A+%270.01%27%2C+%27subject%27%3A+%27%5Cxe6%5Cxb8%5Cxb8%5Cxe6%5Cx88%5Cx8f%5Cxe9%5Cx92%5Cxbb%5Cxe7%5Cx9f%5Cxb3%27%7D&sign=dLj20IkYMEUC4%252FXG3V1sNGMzx3Zr%252BhBs9hXXW%252FGTDcLDz6hD83zP6lpksC9JdohIb%252FSuM7vf%252Fk8d03P1flHfH6a64KYNkXtgUV78fUBfTS2ykxTrE%252F8CNfRGm0HcH6R982mT0SXcgWGwCXi3zaUSDhh1kj    nyxzRP%252Favn2DRHkP62QD%252FkwQauEEclcnZtk1LpM2c1eAKOo8AHQRFh%252Fh1er0xwqzeqwFH8F0OzeM1%252B2C3XVVzJyotFZ530QZF5LU7xvd%252BMTfYaYl0lEf0dy9f40qZXOtX3IjphMyqzH9pLN78V5B7n1J%252BVNCXaTyBB6P0S145riraFdPISVQEflIie%252Bw%253D%253D&version=1.0&notify_url=http%3A%2F%2Fsdkpy.zqgame.com%2F9057%2F312%2F2017121200617028%2Fpay_notice&sign_type=R    SA2&method=alipay.trade.wap.pay’
+
+
+
+
+测试支付宝手机网页支付:
+curl -vvv https://openapi.alipay.com/gateway.do -d'timestamp=2018-07-11+10%3A47%3A48&charset=utf-8&app_id=2017121200617028&biz_content=%7B%27body%27%3A+%27%5Cxe6%5Cxb8%5Cxb8%5Cxe6%5Cx88%5Cx8f%5Cxe9%5Cx92%5Cxbb%5Cxe7%5Cx9f%5Cxb3%27%2C+%27out_trade_no%27%3A+%2725417648720320287%27%2C+%27product_code%27%3A+%27QUICK_WAP_WAY%27%2C+%27total_amount%27%3A+%270.01%27%2C+%27subject%27%3A+%27%5Cxe6%5Cxb8%5Cxb8%5Cxe6%5Cx88%5Cx8f%5Cxe9%5Cx92%5Cxbb%5Cxe7%5Cx9f%5Cxb3%27%7D&sign=dLj20IkYMEUC4%252FXG3V1sNGMzx3Zr%252BhBs9hXXW%252FGTDcLDz6hD83zP6lpksC9JdohIb%252FSuM7vf%252Fk8d03P1flHfH6a64KYNkXtgUV78fUBfTS2ykxTrE%252F8CNfRGm0HcH6R982mT0SXcgWGwCXi3zaUSDhh1kjnyxzRP%252Favn2DRHkP62QD%252FkwQauEEclcnZtk1LpM2c1eAKOo8AHQRFh%252Fh1er0xwqzeqwFH8F0OzeM1%252B2C3XVVzJyotFZ530QZF5LU7xvd%252BMTfYaYl0lEf0dy9f40qZXOtX3IjphMyqzH9pLN78V5B7n1J%252BVNCXaTyBB6P0S145riraFdPISVQEflIie%252Bw%253D%253D&version=1.0&notify_url=http%3A%2F%2Fsdkpy.zqgame.com%2F9057%2F312%2F2017121200617028%2Fpay_notice&sign_type=RSA2&method=alipay.trade.wap.pay'
+
+
+ {
+
+'notify_time': u'2018-07-11 14:40:17', 
+
+'notify_type': u'trade_status_sync', 
+
+'notify_id': u'e6e226ec8be61ff84fbeac14be940aam0t',
+
+'app_id': u'2017121200617028', 
+
+'charset': u'GBK',
+
+'version': u'1.0', 
+
+'sign_type': u'RSA2', 
+
+'sign': u'EJL6yTdXAGWaJ1utCiMRWnTsGqlKE+40m2Ljq7EzpnmuBrLeDPECFlTjdKKxCsggPJQfmXtqKb8LVPshHYbp/ZQkEYNRGSQnGAOn+XJKU57jaBUZ1pbE+KQpxYXBwamPbZu1/bvs4mNbu3nB0uG5evesTGzhhM/PJf/let9ufh9rD76WdqQQnsYtgLt3jGAHIka26rmeRPHsnCgTCXUTaJirFROY/bfnqR6WDYmp42aUT/h2HtPjWDK9nvHv2k+Cw52JBn1WIp2Qz4cLMH5Di39582b9Wif/gfVUnKy72VSP8a9NNJrTmaiqrVpW0iEkGRk0nLeyLadNVnVMd7rjjQ==', 
+
+'trade_no': u'2018071121001004780597066399', 
+
+'out_trade_no': u'25417648720320329', 
+
+'buyer_id': u'2088702613221783'
+
+'trade_status': u'TRADE_SUCCESS',
+
+
+'total_amount': u'0.01', 
+
+
+
+ 
+
+ ‘receipt_amount': u'0.01', 
+
+
+
+'buyer_pay_amount': u'0.01', 
+
+'fund_bill_list': u'[{"amount":"0.01","fundChannel":"ALIPAYACCOUNT"}]', 
+
+
+
+
+ 
+
+
+
+
+
+
+
+}
+
+
+keys = (
+'notify_time', 
+'notify_type', 
+'notify_id', 
+'app_id', 
+'charset', 
+'version', 
+'sign_type', 
+'sign', 
+'trade_no',
+'out_trade_no',
+'buyer_id',
+'trade_status',
+'total_amount',
+'receipt_amount', 
+'buyer_pay_amount',
+'fund_bill_list',
+'voucher_detail_list'
+)
+
+
+{
+'seller_email': '929276895@qq.com', 
+'app_id': '2017121200617028', 
+'sign': 'EJL6yTdXAGWaJ1utCiMRWnTsGqlKE+40m2Ljq7EzpnmuBrLeDPECFlTjdKKxCsggPJQfmXtqKb8LVPshHYbp/ZQkEYNRGSQnGAOn+XJKU57jaBUZ1pbE+KQpxYXBwamPbZu1/bvs4mNbu3nB0uG5evesTGzhhM/PJf/let9ufh9rD76WdqQQnsYtgLt3jGAHIka26rmeRPHsnCgTCXUTaJirFROY/bfnqR6WDYmp42aUT/h2HtPjWDK9nvHv2k+Cw52JBn1WIp2Qz4cLMH5Di39582b9Wif/gfVUnKy72VSP8a9NNJrTmaiqrVpW0iEkGRk0nLeyLadNVnVMd7rjjQ==', 
+
+'buyer_pay_amount': '0.01', 
+'point_amount': '0.00, 
+
+platappid:2017121200617028, 
+platform:312, 
+handler_name:pay_notice', 
+
+'subject': '??????\xa8\xa6?????', 
+'charset': 'GBK', 
+'buyer_logon_id': '645***@qq.com', 
+'gmt_create': '2018-07-11 14:40:16', 
+'version': '1.0', 'invoice_amount': '0.01', 
+'sign_type': 'RSA2', 
+'out_trade_no': '25417648720320329', 
+'body': '??????\xa8\xa6?????', 
+'fund_bill_list': '[{"amount":"0.01","fundChannel":"ALIPAYACCOUNT"}]', 
+'receipt_amount': '0.01', 
+'auth_app_id': '2017121200617028', 
+'trade_status': 'TRADE_SUCCESS', 
+'gmt_payment': '2018-07-11 14:40:16', 
+'trade_no': '2018071121001004780597066399', 
+'seller_id': '2088421830816203', 
+'total_amount': '0.01', 
+'notify_time': '2018-07-11 14:40:17', 
+'notify_id': 'e6e226ec8be61ff84fbeac14be940aam0t', 
+'notify_type': 'trade_status_sync', 
+'buyer_id': '2088702613221783'}
+
+
+在服务器上解决代码冲突
+git stash
+git pull
+git stash pop
+
+
+gmt_create=2018-07-11+14%3A40%3A16&
+charset=GBK&
+seller_email=929276895%40qq.com&
+subject=%3F%3F%3F%3F%3F%3F%A8%A6%3F%3F%3F%3F%3F&s
+ign=EJL6yTdXAGWaJ1utCiMRWnTsGqlKE%2B40m2Ljq7EzpnmuBrLeDPECFlTjdKKxCsggPJQfmXtqKb8LVPshHYbp%2FZQkEYNRGSQnGAOn%2BXJKU57jaBUZ1pbE%2BKQpxYXBwamPbZu1%2Fbvs4mNbu3nB0uG5evesTGzhhM%2FPJf%2Flet9ufh9rD76WdqQQnsYtgLt3jGAHIka26rmeRPHsnCgTCXUTaJirFROY%2FbfnqR6WDYmp42aUT%2Fh2HtPjWDK9nvHv2k%2BCw52JBn1WIp2Qz4cLMH5Di39582b9Wif%2FgfVUnKy72VSP8a9NNJrTmaiqrVpW0iEkGRk0nLeyLadNVnVMd7rjjQ%3D%3D&body=%3F%3F%3F%3F%3F%3F%A8%A6%3F%3F%3F%3F%3F&buyer_id=2088702613221783&invoice_amount=0.01&notify_id=e6e226ec8be61ff84fbeac14be940aam0t&fund_bill_list=%5B%7B%22amount%22%3A%220.01%22%2C%22fundChannel%22%3A%22ALIPAYACCOUNT%22%7D%5D&notify_type=trade_status_sync&trade_status=TRADE_SUCCESS&receipt_amount=0.01&buyer_pay_amount=0.01&app_id=2017121200617028&sign_type=RSA2&seller_id=2088421830816203&gmt_payment=2018-07-11+14%3A40%3A16&notify_time=2018-07-11+14%3A40%3A17&version=1.0&out_trade_no=25417648720320329&total_amount=0.01&trade_no=2018071121001004780597066399&auth_app_id=2017121200617028&buyer_logon_id=645***%40qq.com&point_amount=0.00, platappid:2017121200617028, platform:312, handler_name:pay_notice, platappid:2017121200617028, platform:312, handler_name:pay_no
+
+
+
+App sign_str:(
+extends_info_data=&
+game_area=45001&
+game_guid=5880763&
+game_level=&
+game_orderid=2018071210105729377721531361457&
+game_price=98.0&
+game_role_id=&
+game_role_name=&
+notify_id=-1&
+subject=980元宝MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDzBLANJdqSUoEmrC9LhZEVYI09jj7DGG7aLhCPgUIMVlLibOGRAthXfo6Wo4Vv5z/RQlMUP36fB+zIl8uzEwGUAt7J5AZwBpScCgJYQ4pR23stKjBGWW9Ofx0lUAaPrMvZre+G9bGNOhH/Hzkad8BM2nHjqgmFsyGthRsnRfmd0wIDAQAB)
+
+
+ 			@"game_guid"           :   UserId,
+                        @"game_orderid"        :   inOrderId,
+                        @"game_level"          :   level,
+                        @"game_area"           :   @"11",
+                        @"game_price"          :   money,
+                        @"game_role_id"        :   roleID,
+                        @"game_role_name"      :   productInfo.roleName,
+                        @"subject"             :   desc,
+                        @"notify_id"           :   @"-1",
+                        @"extends_info_data"   :   @"扩展参数"
+
+
+
+http://sdkpy.zqgame.com/
+
+
+
+app_id=2017121200617028&
+auth_app_id=2017121200617028&
+body=\xd3\xce\xcf\xb7\xd7\xea\xca\xaf&
+buyer_id=2088722881312501&
+buyer_logon_id=159****5906&
+buyer_pay_amount=0.01&
+charset=GBK&
+fund_bill_list=[{"amount":"0.01","fundChannel":"ALIPAYACCOUNT"}]&
+gmt_create=2018-07-12 13:58:08&
+gmt_payment=2018-07-12 13:58:09&
+invoice_amount=0.01&
+notify_id=87416c2def807c4b02ae88295c46801jv1&
+notify_time=2018-07-12 14:02:20&
+notify_type=trade_status_sync&
+out_trade_no=25417648720320387&
+point_amount=0.00&
+receipt_amount=0.01&
+seller_email=929276895@qq.com&
+seller_id=2088421830816203&
+subject=\xd3\xce\xcf\xb7\xd7\xea\xca\xaf&
+total_amount=0.01&
+trade_no=2018071221001004500518267228&
+trade_status=TRADE_SUCCESS&
+version=1.0'
+
+
+
+curl -vvv http://sdkpy.zqgame.com/9057/312/2017121200617028/pay_notice -d 'ggmt_create=2018-07-12+13%3A58%3A08&charset=GBK&seller_email=929276895%40qq.com&subject=%D3%CE%CF%B7%D7%EA%CA%AF&sign=Re2p%2BuBjlCeobsHf86rpMjKo65GQvpzBXwP6rAvb5o7RhqRZH8AaC9yIUBjrS4xw3KgtlXcC7N%2FFz0ArWTiGUn3f%2F0s4VTIjBLL%2Bm%2B9LyCri0ksErsWw0aqOs0W48kkcjZ89F8I3%2BHViktOB1Aj8DqAnnt7W02tDWuwe2JpyMZN5gxvu0Y%2FKgcrqz1wrBLwlAh2GLa5MOMJ9BPyvk%2Ba4ZcJMcXjIbMRfPRJRN7M9DhE4%2F77Jnp4Dr%2F8qMPU6%2FYI%2Fp0FinFnGSy%2F9LYHIbqfmdiP%2BYFB8Id41q%2FTnkimIL8LcMmWM4SlKMZkNkmSgCwbwu1firXJmmAOaO%2BtMcuKkEQ%3D%3D&body=%D3%CE%CF%B7%D7%EA%CA%AF&buyer_id=2088722881312501&invoice_amount=0.01&notify_id=87416c2def807c4b02ae88295c46801jv1&fund_bill_list=%5B%7B%22amount%22%3A%220.01%22%2C%22fundChannel%22%3A%22ALIPAYACCOUNT%22%7D%5D&notify_type=trade_status_sync&trade_status=TRADE_SUCCESS&receipt_amount=0.01&buyer_pay_amount=0.01&app_id=2017121200617028&sign_type=RSA2&seller_id=2088421830816203&gmt_payment=2018-07-12+13%3A58%3A09&notify_time=2018-07-12+13%3A58%3A09&version=1.0&out_trade_no=25417648720320387&total_amount=0.01&trade_no=2018071221001004500518267228&auth_app_id=2017121200617028&buyer_logon_id=159****5906&point_amount=0.00'
